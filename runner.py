@@ -4,21 +4,24 @@ import sys
 
 seasons = [2011, 2012, 2013, 2014, 2015]
 team = sys.argv[1]
-run_counts = []
+training_set = []
 
 def single_season_total(year):
     season = mlbgame.games(year, home=team)
     games = mlbgame.combine_games(season)
     runs = 0
+    hits = 0
     for game in games:
         try:
             runs = runs + mlbgame.team_stats(game.game_id)["home_batting"].r
+            hits = hits + mlbgame.team_stats(game.game_id)["home_batting"].h
         except:
             "n/a"
-    return runs
+    return {"i": hits, "o": runs}
 
 for season in seasons:
-    runs = single_season_total(season)
-    run_counts.append(runs)
+    i_o = single_season_total(season)
+    training_set.append(i_o)
 
-print(run_counts)
+
+print(training_set)
