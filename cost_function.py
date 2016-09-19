@@ -14,7 +14,7 @@ class CostFunction:
             sum = sum + math.pow(diff, 2)
         return sum * normalizer
 
-red_sox_ts = [{'i': 999, 'o': 546}, {'i': 963, 'o': 525}, {'i': 1010, 'o': 549}, {'i': 825, 'o': 389}, {'i': 975, 'o': 506}]
-h = HypothesisFunction(1, .5)
-c = CostFunction(red_sox_ts)
-print c.cost(h)
+# red_sox_ts = [{'i': 999, 'o': 546}, {'i': 963, 'o': 525}, {'i': 1010, 'o': 549}, {'i': 825, 'o': 389}, {'i': 975, 'o': 506}]
+# h = HypothesisFunction(1, .5)
+# c = CostFunction(red_sox_ts)
+# print c.cost(h)
