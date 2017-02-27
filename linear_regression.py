@@ -10,16 +10,18 @@ class LinearRegression:
         grad_desc_zero = 0
         for pair in self.training_set:
             decrease = hypothesis.result(pair["i"]) - pair["o"]
+            # decrease = hypothesis.theta_0 + (hypothesis.theta_1 * pair["i"]) - pair["o"]
             grad_desc_zero = grad_desc_zero + decrease
-        new_theta = hypothesis.theta_0 - ((grad_desc_zero * alpha) / (len(self.training_set) + 1))
+        new_theta = hypothesis.theta_0 - ((grad_desc_zero * alpha) / len(self.training_set))
         return new_theta
 
     def update_theta_one(self, alpha, hypothesis):
         grad_desc_one = 0
         for pair in self.training_set:
             decrease = (hypothesis.result(pair["i"]) - pair["o"]) * pair["i"]
+            # decrease = (hypothesis.theta_0 + (hypothesis.theta_1 * pair["i"]) - pair["o"]) * pair["i"]
             grad_desc_one = grad_desc_one + decrease
-        new_theta = hypothesis.theta_0 - ((grad_desc_one * alpha) / (len(self.training_set) + 1))
+        new_theta = hypothesis.theta_1 - ((grad_desc_one * alpha) / len(self.training_set))
         return new_theta
 
     def update_thetas(self, alpha, hypothesis):
@@ -29,7 +31,7 @@ class LinearRegression:
 
     def find_best_fit(self, hypothesis, alpha, threshold, n):
         current_hypothesis = hypothesis
-        for _ in range(n):
+        for i in range(n):
             if CostFunction(self.training_set).cost(current_hypothesis) < threshold:
                 break
             else:
@@ -40,5 +42,13 @@ class LinearRegression:
 
 red_sox_ts = [{'i': 999, 'o': 546}, {'i': 963, 'o': 525}, {'i': 1010, 'o': 549}, {'i': 825, 'o': 389}, {'i': 975, 'o': 506}]
 lr = LinearRegression(red_sox_ts)
-h = HypothesisFunction(1, .5)
-print lr.find_best_fit(h, .5, .1, 2)
+# h = HypothesisFunction(1, .5)
+h = HypothesisFunction()
+print lr.find_best_fit(h, .5, 2, 3)
+
+
+# example_ts = [{'i': 1, 'o': 5}, {'i': 2, 'o': 9}, {'i': 3, 'o': 13}, {'i': 4, 'o': 17}, {'i': 5, 'o': 21}]
+# # example_ts = [{'i': 4, 'o': 2}, {'i': 8, 'o': 3}, {'i': 12, 'o': 4}, {'i': 16, 'o': 5}, {'i': 20, 'o': 6}]
+# lr = LinearRegression(example_ts)
+# h = HypothesisFunction()
+# print lr.find_best_fit(h, .05, .02, 500000)

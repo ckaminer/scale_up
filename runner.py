@@ -2,7 +2,7 @@ from __future__ import print_function
 import mlbgame
 import sys
 
-seasons = [2011, 2012, 2013, 2014, 2015]
+seasons = [2011, 2012, 2013, 2014, 2015, 2016]
 team = sys.argv[1]
 training_set = []
 
