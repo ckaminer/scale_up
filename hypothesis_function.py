@@ -8,7 +8,3 @@ class HypothesisFunction:
     def result(self, x):
         y = self.theta_0 + (self.theta_1 * x)
         return y
-
-
-# h = HypothesisFunction()
-# print h.result(1000)
