@@ -13,10 +13,3 @@ class CostFunction:
             diff = hypothesis.result(pair["i"]) - pair["o"]
             sum = sum + math.pow(diff, 2)
         return sum * normalizer
-
-# # red_sox_ts = [{'i': 999, 'o': 546}, {'i': 963, 'o': 525}, {'i': 1010, 'o': 549}, {'i': 825, 'o': 389}, {'i': 975, 'o': 506}]
-# red_sox_ts = [{'i': 1, 'o': 4}, {'i': 2, 'o': 8}, {'i': 3, 'o': 12}, {'i': 4, 'o': 16}, {'i': 5, 'o': 20}]
-# h = HypothesisFunction(0, 4)
-# # h = HypothesisFunction()
-# c = CostFunction(red_sox_ts)
-# print c.cost(h)

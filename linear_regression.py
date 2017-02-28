@@ -10,7 +10,6 @@ class LinearRegression:
         grad_desc_zero = 0
         for pair in self.training_set:
             decrease = hypothesis.result(pair["i"]) - pair["o"]
-            # decrease = hypothesis.theta_0 + (hypothesis.theta_1 * pair["i"]) - pair["o"]
             grad_desc_zero = grad_desc_zero + decrease
         new_theta = hypothesis.theta_0 - ((grad_desc_zero * alpha) / len(self.training_set))
         return new_theta
@@ -19,7 +18,6 @@ class LinearRegression:
         grad_desc_one = 0
         for pair in self.training_set:
             decrease = (hypothesis.result(pair["i"]) - pair["o"]) * pair["i"]
-            # decrease = (hypothesis.theta_0 + (hypothesis.theta_1 * pair["i"]) - pair["o"]) * pair["i"]
             grad_desc_one = grad_desc_one + decrease
         new_theta = hypothesis.theta_1 - ((grad_desc_one * alpha) / len(self.training_set))
         return new_theta
@@ -40,15 +38,16 @@ class LinearRegression:
         return {"b": current_hypothesis.theta_0, "m": current_hypothesis.theta_1}
 
 
-red_sox_ts = [{'i': 999, 'o': 546}, {'i': 963, 'o': 525}, {'i': 1010, 'o': 549}, {'i': 825, 'o': 389}, {'i': 975, 'o': 506}]
-lr = LinearRegression(red_sox_ts)
-# h = HypothesisFunction(1, .5)
-h = HypothesisFunction()
-print lr.find_best_fit(h, .5, 2, 3)
-
-
-# example_ts = [{'i': 1, 'o': 5}, {'i': 2, 'o': 9}, {'i': 3, 'o': 13}, {'i': 4, 'o': 17}, {'i': 5, 'o': 21}]
-# # example_ts = [{'i': 4, 'o': 2}, {'i': 8, 'o': 3}, {'i': 12, 'o': 4}, {'i': 16, 'o': 5}, {'i': 20, 'o': 6}]
-# lr = LinearRegression(example_ts)
+# # Red Sox training set.  Hits/Runs from 2011-2015
+# red_sox_ts = [{'i': 999, 'o': 546}, {'i': 963, 'o': 525}, {'i': 1010, 'o': 549}, {'i': 825, 'o': 389}, {'i': 975, 'o': 506}]
+# # Create new Regression instance with given training set
+# lr = LinearRegression(red_sox_ts)
+# # Create new hypothesis instance with random starting thetas
 # h = HypothesisFunction()
-# print lr.find_best_fit(h, .05, .02, 500000)
+# # Calculate and print best fit
+# best_fit = lr.find_best_fit(h, .000001, .000005, 100)
+# print best_fit
+# # Use hypothesis function and best fit results to predict 2016 run totals
+# result_fun = HypothesisFunction(best_fit["b"], best_fit["m"])
+# # Sox recorded 1024 hits in 2016 and scored 565 runs
+# print result_fun.result(1024)
