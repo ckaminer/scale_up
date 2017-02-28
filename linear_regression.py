@@ -38,8 +38,11 @@ class LinearRegression:
         return {"b": current_hypothesis.theta_0, "m": current_hypothesis.theta_1}
 
 
-# # Red Sox training set.  Hits/Runs from 2011-2015
-# red_sox_ts = [{'i': 999, 'o': 546}, {'i': 963, 'o': 525}, {'i': 1010, 'o': 549}, {'i': 825, 'o': 389}, {'i': 975, 'o': 506}]
+# # Red Sox training set.  Hits/Runs from 2011-2016
+# red_sox_ts = [{'i': 999, 'o': 546},  {'i': 963, 'o': 525},  {'i': 1010, 'o': 549},
+#               {'i': 825, 'o': 389},  {'i': 975, 'o': 506},  {'i': 1024, 'o': 565}]
+# rockies_ts = [{'i': 898, 'o': 519},  {'i': 1030, 'o': 593}, {'i': 992, 'o': 526},
+#               {'i': 1088, 'o': 568}, {'i': 995, 'o': 518},  {'i': 1000, 'o': 596}]
 # # Create new Regression instance with given training set
 # lr = LinearRegression(red_sox_ts)
 # # Create new hypothesis instance with random starting thetas
