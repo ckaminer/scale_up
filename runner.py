@@ -1,6 +1,7 @@
 from __future__ import print_function
 import mlbgame
 import sys
+import json
 from hypothesis_function import HypothesisFunction
 from linear_regression import LinearRegression
 
@@ -9,7 +10,7 @@ team = sys.argv[1]
 training_set = []
 
 def single_season_total(year):
-    season = mlbgame.games(year, home=team)
+    season = mlbgame.games(year, home = team, away = team, months=5)
     games = mlbgame.combine_games(season)
     runs = 0
     hits = 0
@@ -21,9 +22,24 @@ def single_season_total(year):
             "n/a"
     return {"i": hits, "o": runs}
 
-for season in seasons:
-    i_o = single_season_total(season)
-    training_set.append(i_o)
+def read_totals_file():
+    return json.load(open("teamTotals.txt"))
+
+def write_totals_file():
+    json.dump(teamTotals, open("teamTotals.txt", 'w'))
+
+teamTotals = read_totals_file()
+
+if team in teamTotals.keys():
+    print("team found")
+    training_set = teamTotals[team]
+else:
+    print("team not found")
+    for season in seasons:
+        i_o = single_season_total(season)
+        training_set.append(i_o)
+    teamTotals[team] = training_set
+    write_totals_file()
 
 print("The %s recorded the following number of hits('i') and runs('o') at home from 2011-2016: \n%s\n" % (team, training_set))
 

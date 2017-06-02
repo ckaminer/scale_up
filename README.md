@@ -12,6 +12,11 @@ To run locally:
 - clone down repo
 - cd into the repo
 
+#### To install the mlbgame API that is used to gather data:
+```
+pip install mlbgame
+```
+
 #### To view the training set, results, and prediction for a given team:
 ```
 python runner.py "<team name here in quotes>"
